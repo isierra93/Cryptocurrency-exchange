@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/catIco.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
     <title>Crypto Cat</title>
 </head>
+
 <body>
+    
 
+    <div class="contenedor-form">
+        <h2>Exchange</h2>
 
-    <form action="">
-        <select name="" id="cryptoOption">
-            <option value="0">BTC</option>
-            <option value="1">ETH</option>
-            <option value="2">ADA</option>
-        </select>
-        <input type="number" name="" id="cryptoMount">
-        <button type="submit" id="buttonCompra">COMPRAR</button>
-    </form>
+        <div class="formulario">
+            
+            <form action="">
+    
+                <div class="contenedor-moneda">
+                    <label for="monedas">Criptomoneda:</label>
+                    <select name="monedas" id="cryptoOption">
+                        <option value="0">BTC</option>
+                        <option value="1">ETH</option>
+                        <option value="2">ADA</option>
+                    </select>
+                </div>
+    
+                <div class="contenedor-cantidad">
+                    <label for="number">Cantidad en USD:</label>
+                    <input type="number" min="1" name="" id="cryptoMount">
+                </div>
+    
+                <div>
+                    <button type="submit" id="buttonCompra">COMPRAR</button>
+                </div>
+            </form>
 
+            <div class="contenedor-boton-wallet">
+                <button type="submit" id="verSaldos">WALLET</button>
+            </div>
+        </div>
 
-    <div id="result">
-   
     </div>
 
+    <div id="result">
+
+    </div>
 
     <script src="js/listCoins.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

@@ -2,32 +2,7 @@ let cryptoOption = document.getElementById(`cryptoOption`);
 let cryptoMount = document.getElementById("cryptoMount");
 let buttonCompra = document.getElementById(`buttonCompra`);
 let result = document.getElementById(`result`);
-
-/* Se declara la clase moneda con sus variables */
-class Monedas {
-    constructor(nombre, valor, wallet = 0) {
-        this.nombre = nombre;
-        this.valor = valor;
-        this.wallet = wallet;
-    }
-}
-
-/* Se declaran las monedas listadas y se las agrega al array */
-const btc = new Monedas(`Bitcoin`, 20000)
-const eth = new Monedas(`Ether`, 1300);
-const ada = new Monedas(`Cardano`, 1);
-
-const monedasListadas = [btc, eth, ada];
-
-//Si no tiene saldos cargados en el storage, se cargan. Si ya tenia, se sigue
-if (localStorage.getItem(`monedasListadasenJSON`) == null) {
-    console.log(`se cargan monedas al entrar`)
-    localStorage.setItem(`monedasListadasenJSON`, JSON.stringify(monedasListadas))
-} else {
-    console.log(`NO SE CARGAN`)
-}
-
-
+let verSaldos = document.getElementById(`verSaldos`);
 
 buttonCompra.onclick = (e) => {
     //Se previene la recarga de la pagina
@@ -62,14 +37,27 @@ cargarSaldo = (index, cantidad) =>{
 }
 
 
-mostrarSaldo = () => {
-    for(i = 0; i < monedasListadas.length; i++){
+verSaldos.onclick = (e) =>{
+    e.preventDefault();
 
-        let saldos = JSON.parse(localStorage.getItem(`monedasListadasenJSON`))
-        console.log(saldos[i].nombre)
-        console.log(saldos[i].wallet)
+    mostrarSaldo();
 
-        
-        
-    }
 }
+
+
+mostrarSaldo = () => {
+    let saldos = JSON.parse(localStorage.getItem(`monedasListadasenJSON`));
+
+    result.innerHTML = `<h1>Wallet</h1>`;
+
+    for (i = 0; i < monedasListadas.length; i++){
+        let walletVision = document.createElement(`div`)
+        walletVision.className = `contenedorSaldos`
+        walletVision.innerHTML = `<p>Moneda: ${saldos[i].nombre}</p>
+                                <p>Cantidad: ${saldos[i].wallet}</p>`
+
+        result.append(walletVision);
+    }
+
+}
+
