@@ -5,16 +5,15 @@ let result = document.getElementById(`result`);
 let verSaldos = document.getElementById(`verSaldos`);
 
 buttonCompra.onclick = (e) => {
-    //Se previene la recarga de la pagina
+
     e.preventDefault();
 
-    //Se parsea el monto a comprar, suma la cantidad a la wallet
     cryptoMount.value = +(cryptoMount.value);
 
     let compraActual = cryptoMount.value / (monedasListadas)[+(cryptoOption.value)].valor;
 
 
-    cargarSaldo (+(cryptoOption.value), compraActual)
+    cargarSaldo(+(cryptoOption.value), compraActual)
 
 
 
@@ -28,8 +27,8 @@ buttonCompra.onclick = (e) => {
 
 }
 
-cargarSaldo = (index, cantidad) =>{
-    
+cargarSaldo = (index, cantidad) => {
+
     let monedasListadas = JSON.parse(localStorage.getItem(`monedasListadasenJSON`))
     monedasListadas[index].wallet += cantidad;
 
@@ -37,7 +36,7 @@ cargarSaldo = (index, cantidad) =>{
 }
 
 
-verSaldos.onclick = (e) =>{
+verSaldos.onclick = (e) => {
     e.preventDefault();
 
     mostrarSaldo();
@@ -46,18 +45,21 @@ verSaldos.onclick = (e) =>{
 
 
 mostrarSaldo = () => {
+
     let saldos = JSON.parse(localStorage.getItem(`monedasListadasenJSON`));
 
     result.innerHTML = `<h1>Wallet</h1>`;
 
-    for (i = 0; i < monedasListadas.length; i++){
+    for (i = 0; i < saldos.length; i++) {
+
+        let { nombre, wallet } = saldos[i]
+
         let walletVision = document.createElement(`div`)
         walletVision.className = `contenedorSaldos`
-        walletVision.innerHTML = `<p>Moneda: ${saldos[i].nombre}</p>
-                                <p>Cantidad: ${saldos[i].wallet}</p>`
+        walletVision.innerHTML = `<p>Moneda: ${nombre}</p>
+                                <p>Cantidad: ${wallet}</p>`
 
         result.append(walletVision);
     }
 
 }
-

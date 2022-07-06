@@ -14,11 +14,7 @@ const ada = new Monedas(`Cardano`, 1);
 
 const monedasListadas = [btc, eth, ada];
 
-//Si no tiene saldos cargados en el storage, se cargan. Si ya tenia, se sigue
-if (localStorage.getItem(`monedasListadasenJSON`) == null) {
-    console.log(`se cargan monedas al entrar`)
-    localStorage.setItem(`monedasListadasenJSON`, JSON.stringify(monedasListadas))
-} else {
-    console.log(`NO SE CARGAN`)
-}
+
+// Si no tiene saldos cargados en el storage, se cargan. Si ya tenia, se sigue
+localStorage.getItem(`monedasListadasenJSON`) === null && localStorage.setItem(`monedasListadasenJSON`, JSON.stringify(monedasListadas));
 
