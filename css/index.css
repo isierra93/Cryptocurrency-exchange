@@ -1,13 +1,18 @@
+/* Formateo de CSS y gradiant */
+
 html {
     height: 100%;
+    width: 100%;
 }
-
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     background: linear-gradient(to bottom, #EDC46F, #F7BE74, #E0A174, #F79874, #ED7F6F);
 }
+
+/* Estilos del form*/
+
 
 .contenedor-form {
     display: flex;
@@ -19,7 +24,7 @@ body {
     text-align: center;
     background-color:#F5F5F5;
     border-radius: 4rem;
-    padding: 4rem;
+    padding: 3rem;
 }
 
 .contenedor-moneda {
@@ -34,6 +39,13 @@ body {
     flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
+}
+#buttonCompra{
+    margin-top: 1rem;
+}
+
+.contenedor-boton-wallet{
+    margin-top: 2rem;
 }
 
 label {
@@ -51,7 +63,8 @@ input {
     border-radius: 4rem;
 }
 
-/* Boton de compra */
+
+/* Boton con Hoover */
 
 button {
     padding: 0.8em 1.8em;
@@ -91,19 +104,29 @@ button:hover {
     color: #111;
 }
 
-/* Boton de wallet */
+
+
+/* Resultados Wallet */
 
 #result{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.contenedor-boton-wallet{
+    text-align: center;
     margin-top: 2rem;
+    background-color: #e3f2fd;
     
 }
 
-.contenedorSaldos{
-    font-weight: 700;
-    text-align: center;
+
+/* Historial de compras */
+
+#listadoTransacciones{
+    background-color: #111;
+    justify-content: center;
+    border-radius: 1%;
+    color: #00EB09;
+}
+.transaccionItem{
+    margin: .5rem;
 }
