@@ -3,10 +3,24 @@
 let cryptoOption = document.getElementById(`cryptoOption`);
 let cryptoMount = document.getElementById("cryptoMount");
 let buttonCompra = document.getElementById(`buttonCompra`);
-let result = document.getElementById(`result`);
-let verSaldos = document.getElementById(`verSaldos`);
 
+//Titulo en efecto
+let text = document.getElementById(`welcomeTitle`);
+let str = text.innerHTML;
 
+text.innerHTML = "";
+let speed = 200;
+let textIndex = 0;
+
+typeWritter = () => {
+
+    if (textIndex < str.length) {
+        text.innerHTML += str.charAt(textIndex);
+        textIndex++;
+        setTimeout(typeWritter, speed);
+    }
+}
+setTimeout(typeWritter, speed);
 
 //Funciones
 
@@ -30,7 +44,7 @@ buttonCompra.onclick = (e) => {
 
         cargarSaldo(+(cryptoOption.value), compraActual)
 
-        obtenerFecha ((monedasListadas)[+(cryptoOption.value)].nombre, compraActual);
+        obtenerFecha((monedasListadas)[+(cryptoOption.value)].nombre, compraActual);
 
         Swal.fire({
             title: 'Operacion exitosa!',
@@ -55,34 +69,5 @@ cargarSaldo = (index, cantidad) => {
     monedasListadas[index].wallet += cantidad;
 
     localStorage.setItem(`monedasListadasenJSON`, JSON.stringify(monedasListadas));
-}
-
-
-verSaldos.onclick = (e) => {
-    e.preventDefault();
-
-    mostrarSaldo();
-
-}
-
-
-mostrarSaldo = () => {
-
-    let saldos = JSON.parse(localStorage.getItem(`monedasListadasenJSON`));
-
-    result.innerHTML = `<h1>Wallet</h1>`;
-
-    for (i = 0; i < saldos.length; i++) {
-
-        let { nombre, wallet } = saldos[i]
-
-        let walletVision = document.createElement(`div`)
-        walletVision.className = `contenedorSaldos`
-        walletVision.innerHTML = `<p><b>Moneda:</b> ${nombre}</p>
-                                <p><b>Cantidad:</b> ${wallet}</p>`
-
-        result.append(walletVision);
-    }
-
 }
 
