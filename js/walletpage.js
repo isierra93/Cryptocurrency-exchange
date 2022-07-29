@@ -1,5 +1,4 @@
 //Wallet
-let walletBtn = document.getElementById(`walletBtn`);
 let result = document.getElementById(`result`);
 
 mostrarSaldo = () => {
@@ -7,23 +6,21 @@ mostrarSaldo = () => {
 
     let saldos = JSON.parse(localStorage.getItem(`monedasListadasenJSON`));
 
-    for (i = 0; i < saldos.length; i++) {
 
-        let { nombre, wallet } = saldos[i]
-
-        let walletVision = document.createElement(`div`)
-        walletVision.className = `contenedorSaldos`
-        walletVision.innerHTML = `<h3>${nombre}:</h3>
-                                <h5>${wallet}.</h5>`
-
-        result.append(walletVision);
-    }
+    saldos.forEach(element => {
+        let walletVision = document.createElement(`div`);
+        walletVision.className = `cardContenedor`;
+        walletVision.innerHTML = `<div class="card" style="width: 16rem;">
+                <img src="../img/${element.nombre}.jpg" class="card-img-top" alt="">
+                <div class="card-body">
+          <h5 class="card-title">${element.nombre}</h5>
+          <p class="card-text">${element.wallet}</p>
+        </div>
+      </div>`
+      result.append(walletVision);
+    });
 
 }
 
-walletBtn.onclick = () => {
-    mostrarSaldo ();
-    
-    walletBtn.remove();
-}
+mostrarSaldo ();
 
